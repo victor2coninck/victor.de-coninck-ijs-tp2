@@ -29,18 +29,18 @@ class GameLayout extends React.Component {
   //truc a faire a la derniere etape du tp
   static getDerivedStateFromProps(props, state) {
     //lines
-    if ((state.cells[0] === state.cells[1] === state.cells[2] && state.cells[0] !== "") ||
-    (state.cells[3] === state.cells[4] === state.cells[5] && state.cells[3] !== "") ||
-    (state.cells[6] === state.cells[7] === state.cells[8] && state.cells[6] !== "") ||
+    if ((state.cells[0] === state.cells[1] && state.cells[0] === state.cells[2] && state.cells[0] !== "") ||
+    (state.cells[3] === state.cells[4] && state.cells[3] === state.cells[5] && state.cells[3] !== "") ||
+    (state.cells[6] === state.cells[7] && state.cells[6] === state.cells[8] && state.cells[6] !== "") ||
     //columns
-    (state.cells[0] === state.cells[3] === state.cells[6] && state.cells[0] !== "") ||
-    (state.cells[1] === state.cells[4] === state.cells[7] && state.cells[1] !== "") ||
-    (state.cells[2] === state.cells[5] === state.cells[8] && state.cells[2] !== "") ||
+    (state.cells[0] === state.cells[3] && state.cells[0] === state.cells[6] && state.cells[0] !== "") ||
+    (state.cells[1] === state.cells[4] && state.cells[1] === state.cells[7] && state.cells[1] !== "") ||
+    (state.cells[2] === state.cells[5] && state.cells[2] === state.cells[8] && state.cells[2] !== "") ||
     //diag
-    (state.cells[0] === state.cells[4] === state.cells[8] && state.cells[0] !== "") ||
-    (state.cells[6] === state.cells[4] === state.cells[2] && state.cells[6] !== ""))
+    (state.cells[0] === state.cells[4] && state.cells[0] === state.cells[8] && state.cells[0] !== "") ||
+    (state.cells[6] === state.cells[4] && state.cells[6] === state.cells[2] && state.cells[6] !== ""))
     {
-      state.winner = state.currentPlayer;
+      state.gameState = "";
     }
     return state;
   }
