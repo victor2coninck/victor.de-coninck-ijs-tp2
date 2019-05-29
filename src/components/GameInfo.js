@@ -18,9 +18,16 @@ const Gale ) (props) => {
 }
 
 */
-const GameInfo = ({ gameState = "stale", currentPlayer = "unkown" }) => (
-  gameState.winner === "" ?
-  <h3>It's your turn {currentPlayer}</h3> : <h1>{gameState.winner} HAS WON THE GAME</h1>
-);
+const GameInfo = ({ gameState = "stale", currentPlayer = "unkown" }) => {
+  switch(gameState)
+  {
+    case "stale":
+      return <h3>It's your turn {currentPlayer}</h3>;
+    case "even":
+      return <h3>EGALITE !!!</h3>;
+    default:
+      return <h3>{currentPlayer} HAS WON THE GAME</h3>;
+  }
+};
 
 export default GameInfo;

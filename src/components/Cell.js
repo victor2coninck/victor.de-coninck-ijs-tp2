@@ -18,8 +18,7 @@ class Cell extends React.Component {
 
     this.state = {
       mouseOver: false,
-      clicked: false,
-      symb: ""
+      clicked: false
     };
   }
 
@@ -29,8 +28,8 @@ class Cell extends React.Component {
       style={{...cellStyle, backgroundColor: this.state.mouseOver ? 'blue' : 'white'}} 
       onMouseOver={() => this.setState({mouseOver: true})}
       onMouseOut={() => this.setState({mouseOver: false})}
-      onClick={() => this.state.clicked ? {} : this.setState({clicked: true, symb: (this.props.player==="P1" ? "X" : "O")})}
-  >{this.state.symb}</div>);
+      onClick={this.props.onClick}
+  >{this.props.symb}</div>);
   }
 }
 

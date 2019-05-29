@@ -18,9 +18,9 @@ class GameLayout extends React.Component {
     super(props);
 
     this.state = {
-      cells: Array(9).fill("X"),
-      currentPlayer: "P1",
-      winner: ""
+      gameState: "stale",
+      cells: Array(9).fill(""),
+      currentPlayer: "P1"
     };
   }
 
@@ -44,21 +44,27 @@ class GameLayout extends React.Component {
     }
     return state;
   }
+  
+  switchPlayer(currentPlayer) {
+    if (currentPlayer === "P1")
+      return "P2";
+    return "P1";
+  }
 
+  onClickCell(cells) {
+    return (index) => {
+      if (cells[index] !== "")
+        return;
+      cells[index] = this.state.currentPlayer === "P1" ? "X" : "O";
+      this.setState({cells: cells, currentPlayer: this.switchPlayer(this.state.currentPlayer)});
+    };
+  }
 
   render() {
     return (
-      <div
-        style={gameLayoutStyle}
-        onClick={() => 
-        {if (this.state.currentPlayer === "P1") {
-          this.setState({currentPlayer: "P2"});
-        }else{
-          this.setState({currentPlayer: "P1"});
-        }}}
-      >
-        <GameInfo onClick={this.handleClick} gameState={this.state} currentPlayer={this.state.currentPlayer}/>
-        <Board cells={this.state.cells} currentPlayer={this.state.currentPlayer} onClickCell={index => this.handleClickCell(index)} />
+      <div style={gameLayoutStyle}>
+        <GameInfo gameState={this.state.gameState} currentPlayer={this.state.currentPlayer}/>
+        <Board cells={this.state.cells} onClickCell={this.onClickCell(this.state.cells)} />
       </div>
     );
   }
